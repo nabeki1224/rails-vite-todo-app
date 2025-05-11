@@ -1,0 +1,1 @@
+List.find_or_create_by!(title: "卵を買う", content: "10個入りの白い卵を買うこと")
