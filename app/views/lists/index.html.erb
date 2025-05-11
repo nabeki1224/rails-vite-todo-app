@@ -1,17 +1,22 @@
-<h1>TODOリスト</h1>
+<div class="container mx-auto py-10">
+  <h1 class="text-4xl p-4">TODOリスト</h1>
 
-<%= form_with model: @list do |form| %>
-  <%= form.label :title, "タイトル" %>
-  <%= form.text_field :title %>
+  <%= form_with model: @list, class: "border border-solid border-gray-200 p-4" do |form| %>
+    <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+      <%= form.label :title, "タイトル" %>
+      <%= form.text_field :title, class: "border border-solid border-gray-400 rounded p-2", placeholder: "タイトルを入力" %>
 
-  <%= form.label :content, "本文" %>
-  <%= form.text_area :content %>
+      <%= form.label :content, "本文" %>
+      <%= form.text_area :content, class: "border border-solid border-gray-400 rounded p-2", placeholder: "詳細を入力" %>
 
-  <%= form.submit "保存" %>
-<% end %>
+      <%= form.submit "保存", class:"col-start-2 bg-green-400 hover:bg-green-500 px-4 py-1 w-full my-2 rounded cursor-pointer" %>
+    </div>
+    
+  <% end %>
 
-<% @lists.each do |list| %>
-  <%= list.title %>
-  <%= list.content %>
-  <%= link_to "削除", list_path(list.id), data: { turbo_method: :delete } %>
-<% end %>
+  <% @lists.each do |list| %>
+    <%= list.title %>
+    <%= list.content %>
+    <%= link_to "削除", list_path(list.id), data: { turbo_method: :delete } %>
+  <% end %>
+</div>
