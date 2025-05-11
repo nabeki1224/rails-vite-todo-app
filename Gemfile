@@ -58,3 +58,4 @@ end
 
 gem 'vite_rails'
 gem 'foreman'
+gem 'turbo-rails'

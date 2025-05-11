@@ -13,4 +13,5 @@
 <% @lists.each do |list| %>
   <%= list.title %>
   <%= list.content %>
+  <%= link_to "削除", list_path(list.id), data: { turbo_method: :delete } %>
 <% end %>
