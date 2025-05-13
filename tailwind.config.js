@@ -1,6 +1,7 @@
 module.exports = {
   content: [
-    "./app/frontend/**/*.{html,js,ts,vue}"
+    './app/views/**/*',
+    './app/frontend/**/*.{vue,js,ts}'
   ],
   theme: {
     extend: {},
