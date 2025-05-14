@@ -1,8 +1,8 @@
 <div class="container w-1/2 mx-auto py-10">
   <h1 class="text-4xl p-4">TODOリスト</h1>
+  <div id="list-container" data-lists="<%= @lists.to_json %>"></div>
   <div id="new-list"></div>
   <div id="list-item" data-lists="<%= @lists.to_json %>"></div>
 </div>
 
-<%= vite_typescript_tag 'new_list' %>
-<%= vite_typescript_tag 'list_item' %>
+<%= vite_typescript_tag 'list_container' %>
