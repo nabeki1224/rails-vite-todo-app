@@ -1,10 +1,10 @@
 <template>
-  <NewList @created="addList" />
+  <NewList />
   <ListTable :lists="lists" />
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from 'vue'
+  import { ref } from 'vue'
   import NewList from './NewList.vue'
   import ListTable from './ListTable.vue'
 
@@ -14,14 +14,6 @@
     content: string
   }
 
-  const lists = ref<
-
-  const addList = (list: ListItem) => {
-    lists.value.unshift(list)
-  }
-
-  watch(() => props.lists, (newVal) => {
-    console.log('props.lists changed!', newVal) // ← ここ
-    lists.value = [...newVal]
-  })
+  const props = defineProps<{ lists: ListItem[] }>()
+  const lists = ref<ListItem[]>([...props.lists])
 </script>

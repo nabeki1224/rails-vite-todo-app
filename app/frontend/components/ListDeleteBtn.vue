@@ -26,6 +26,7 @@
     })
 
     if(response.ok) {
+      alert("成功")
       emit('deleted', id)
     } else {
       alert("残念！失敗！")

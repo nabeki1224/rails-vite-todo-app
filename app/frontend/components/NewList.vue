@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submitForm" class="border border-solid border-gray-200 p-4">
-    <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 items-center">
+    <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
       <label for="title">タイトル</label>
       <input
         id="title"
@@ -11,7 +11,7 @@
       />
 
       <label for="content">本文</label>
-      <textarea
+      <input
         id="content"
         v-model="newList.content"
         class="border border-solid border-gray-400 rounded p-2"
@@ -37,10 +37,6 @@ import { reactive } from 'vue';
     content: ''
   })
 
-  const emit = defineEmits<{
-    (e: 'created', list: { id: number; title: string; content: string }): void
-  }>()
-
   const submitForm = async () => {
     const response = await fetch('/lists', {
       method: 'POST',
@@ -52,8 +48,6 @@ import { reactive } from 'vue';
     })
 
     if (response.ok) {
-      const data = await response.json()
-      emit('created', data)
       alert('成功')
       newList.title = ''
       newList.content = ''
