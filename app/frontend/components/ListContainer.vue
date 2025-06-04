@@ -1,19 +1,13 @@
 <template>
-  <NewList />
-  <ListTable :lists="lists" />
+  <NewList  />
+  <ListTable :lists="props.lists" />
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
   import NewList from './NewList.vue'
   import ListTable from './ListTable.vue'
 
-  interface ListItem {
-    id: number
-    title: string
-    content: string
-  }
-
-  const props = defineProps<{ lists: ListItem[] }>()
-  const lists = ref<ListItem[]>([...props.lists])
+  const props = defineProps<{
+    lists: { id: number; title: string; content: string }[]
+  }>()
 </script>
