@@ -1,3 +1,8 @@
+<!-- 新規投稿時にリロードしないとリストが更新されない -->
+
+
+
+
 <template>
   <form @submit.prevent="submitForm" class="border border-solid border-gray-200 p-4">
     <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
