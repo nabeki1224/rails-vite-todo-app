@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(list, index) in props.lists" :key="index">
+      <tr v-for="(list, index) in localLists" :key="index">
         <td class="px-6 py-4">{{  list.title }}</td>
         <td class="px-6 py-4">{{ list.content }}</td>
         <td class="px-6 py-4"><ListDeleteBtn :listId="list.id" @deleted="handleDelete" /></td>
@@ -26,9 +26,9 @@
   }>()
   console.log(props.lists)
 
-  const locallists = ref(props.lists)
+  const localLists = ref(props.lists)
 
   const handleDelete = (id: number) => {
-    locallists.value = locallists.value.filter(list => list.id !== id)
+    localLists.value = localLists.value.filter(list => list.id !== id)
   }
 </script>
