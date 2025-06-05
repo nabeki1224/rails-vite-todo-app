@@ -6,8 +6,9 @@ class ListsController < ApplicationController
 
   def create
     list = List.new(list_params)
-    list.save
-    redirect_to lists_path
+    if list.save
+      render json: List.all
+    end
   end
 
   def destroy

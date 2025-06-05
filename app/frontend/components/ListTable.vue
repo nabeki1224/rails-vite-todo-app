@@ -24,7 +24,6 @@
   const props = defineProps<{
     lists: { id: number; title: string; content: string }[]
   }>()
-  console.log(props.lists)
 
   const localLists = ref(props.lists)
 
