@@ -1,6 +1,6 @@
 <template>
   <NewList :lists="props.lists" @update-lists="handleUpdate" />
-  <ListTable :lists="localLists" />
+  <ListTable :lists="originLists" />
 </template>
 
 <script setup lang="ts">
@@ -12,9 +12,9 @@
     lists: { id: number; title: string; content: string }[]
   }>()
 
-  const localLists = ref(props.lists)
+  const originLists = ref([...props.lists])
 
-  const handleUpdate = (newLists) => {
-    localLists.value = [...newLists]
+  const handleUpdate = (newList) => {
+    originLists.value = [...originLists.value, newList]
   }
 </script>

@@ -7,13 +7,14 @@ class ListsController < ApplicationController
   def create
     list = List.new(list_params)
     if list.save
-      render json: List.all
+      render json: list
     end
   end
 
   def destroy
     list = List.find(params[:id])
     list.destroy
+    render json: list
   end
 
   private

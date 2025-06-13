@@ -35,24 +35,14 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
   const newList = reactive({
     title: '',
     content: ''
   })
 
-  const props = defineProps<{
-    lists: { id: number; title: string; content: string }[]
-  }>()
-
-  const originLists = ref(props.lists)
   const emit = defineEmits(['update-lists'])
-
-  function addList(originLists, newLists) {
-    emit('update-lists', newLists)
-  }
-
 
   const submitForm = async () => {
     const response = await fetch('/lists', {
@@ -66,9 +56,8 @@ import { reactive, ref } from 'vue';
 
     if (response.ok) {
       alert('成功')
-      const newLists = await response.json()
-
-      addList(originLists, newLists)
+      const savedList = await response.json()
+      emit('update-lists', savedList)
       newList.title = ''
       newList.content = ''
     } else {

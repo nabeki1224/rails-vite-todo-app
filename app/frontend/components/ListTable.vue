@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
   import ListDeleteBtn from './ListDeleteBtn.vue'
 
   const props = defineProps<{
@@ -26,6 +26,10 @@
   }>()
 
   const localLists = ref(props.lists)
+
+  watch(() => props.lists, (newLists) => {
+    localLists.value = [...newLists]
+  }, { deep: true })
 
   const handleDelete = (id: number) => {
     localLists.value = localLists.value.filter(list => list.id !== id)
