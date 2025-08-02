@@ -1,5 +1,5 @@
 <template>
-  <NewList :lists="props.lists" @update-lists="handleUpdate" />
+  <NewList :lists="props.lists" @add-lists="handleAdd" />
   <ListTable :lists="originLists" />
 </template>
 
@@ -14,7 +14,7 @@
 
   const originLists = ref([...props.lists])
 
-  const handleUpdate = (newList) => {
+  const handleAdd = (newList) => {
     originLists.value = [...originLists.value, newList]
   }
 </script>
