@@ -1,4 +1,4 @@
-<!-- 新規投稿時にリロードしないとリストが更新されない -->
+<!-- 削除後に新規投稿すると、削除したものが復活する（リロードすると消える） -->
 
 
 
@@ -42,7 +42,7 @@ import { reactive } from 'vue';
     content: ''
   })
 
-  const emit = defineEmits(['update-lists'])
+  const emit = defineEmits(['add-lists'])
 
   const submitForm = async () => {
     const response = await fetch('/lists', {
@@ -57,7 +57,7 @@ import { reactive } from 'vue';
     if (response.ok) {
       alert('成功')
       const savedList = await response.json()
-      emit('update-lists', savedList)
+      emit('add-lists', savedList)
       newList.title = ''
       newList.content = ''
     } else {
