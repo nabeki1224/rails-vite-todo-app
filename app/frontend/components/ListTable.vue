@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr v-for="(list, index) in localLists" :key="index">
-        <td class="px-6 py-4">{{  list.title }}</td>
+        <td class="px-6 py-4">{{ list.title }}</td>
         <td class="px-6 py-4">{{ list.content }}</td>
         <td class="px-6 py-4"><ListDeleteBtn :listId="list.id" @deleted="handleDelete" /></td>
       </tr>
@@ -25,6 +25,10 @@
     lists: { id: number; title: string; content: string }[]
   }>()
 
+  const emit = defineEmits<{
+    'lists-updated': [lists: { id: number; title: string; content: string }[]]
+  }>()
+
   const localLists = ref(props.lists)
 
   watch(() => props.lists, (newLists) => {
@@ -33,5 +37,6 @@
 
   const handleDelete = (id: number) => {
     localLists.value = localLists.value.filter(list => list.id !== id)
+    emit('lists-updated', localLists.value)
   }
 </script>
