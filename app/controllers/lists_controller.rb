@@ -9,7 +9,7 @@ class ListsController < ApplicationController
     if list.save
       render json: list
     else
-      render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: "作成に失敗しました。" }, status: :unprocessable_entity
     end
   end
 

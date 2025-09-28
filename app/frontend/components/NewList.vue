@@ -45,6 +45,10 @@ import { reactive } from 'vue';
   const emit = defineEmits(['add-lists'])
 
   const submitForm = async () => {
+    if(!newList.title.trim() || !newList.content.trim()){
+      alert('タイトルと詳細は必須です。')
+      return
+    }
     const response = await fetch('/lists', {
       method: 'POST',
       headers: {
@@ -55,13 +59,14 @@ import { reactive } from 'vue';
     })
 
     if (response.ok) {
-      alert('成功')
+      alert('Todoリストを作成しました。')
       const savedList = await response.json()
       emit('add-lists', savedList)
       newList.title = ''
       newList.content = ''
     } else {
-      alert('残念！失敗！！')
+      const errorData = await response.json()
+      alert(errorData.errors.join(', '))
     }
   }
 </script>
